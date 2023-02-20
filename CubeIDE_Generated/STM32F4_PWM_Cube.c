@@ -72,8 +72,6 @@ void MX_USB_HOST_Process(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t temp2 = 0;
-uint32_t vrednost = 0;
 uint32_t vrednost2 = 0;
 /* USER CODE END 0 */
 
@@ -133,9 +131,7 @@ int main(void)
   TIM4->CCR3 = 0; // za kanal 3
   TIM4->CCR4 = 0; // za kanal 4
 
-  //uint32_t arrayPWMvrednost[10] = {5, 20, 60, 140, 320, 450, 660, 890, 1100, 1900};
   uint32_t arrayPWMvrednost[10] = {0, 5, 20, 45, 115, 260, 450, 660, 800, 1100};
-  //uint8_t temp = 1;
 
   /* USER CODE END 2 */
 
@@ -143,34 +139,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //vrednost = __HAL_TIM_GET_COUNTER(&htim2);
+		vrednost2 = __HAL_TIM_GET_COUNTER(&htim2);
 
-	  if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)){
-		  while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)){
-			  //Drzi gumb
-		  }
-		  vrednost2 = __HAL_TIM_GET_COUNTER(&htim2);
-		  /*if(temp2 >= 9){
-			  temp = 0;
-		  }
-		  else if(temp2 <= 0){
-			  temp = 1;
-		  }
+		TIM4->CCR1 = arrayPWMvrednost[vrednost2]; // za kanal 1
+		TIM4->CCR2 = arrayPWMvrednost[vrednost2]; // za kanal 2
+		TIM4->CCR3 = arrayPWMvrednost[vrednost2]; // za kanal 3
+		TIM4->CCR4 = arrayPWMvrednost[vrednost2]; // za kanal 4
 
-		  if(temp){
-			  temp2++;
-		  }
-		  else if(!temp){
-			  temp2--;
-		  }*/
-
-		  TIM4->CCR1 = arrayPWMvrednost[vrednost2]; // za kanal 1
-		  TIM4->CCR2 = arrayPWMvrednost[vrednost2]; // za kanal 2
-		  TIM4->CCR3 = arrayPWMvrednost[vrednost2]; // za kanal 3
-		  TIM4->CCR4 = arrayPWMvrednost[vrednost2]; // za kanal 4
-
-		  HAL_Delay(250);
-	  }
+		HAL_Delay(250);
+	}
 
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
