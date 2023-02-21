@@ -18,3 +18,5 @@ STM32F4_TIM - Every second an interupt is triggered and turns on or off a LED.
 
 STM32F4_PWM_Cube - Change the brightness of the LEDs using PWM. 
 
+STM32F4_Cap_Sensing - Using capacitive sensing to turn on 4 LEDs with self made buttons from aluminium foil. Buttons are connected to PB0, PB1, PC1 and PC2 pins.  
+
