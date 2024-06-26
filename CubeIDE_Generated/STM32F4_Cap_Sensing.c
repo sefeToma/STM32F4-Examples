@@ -292,10 +292,11 @@ int main(void)
 	    	  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
 
 
-	      sprintf(temp1, "{\"CAP1\":[%d,%d,%d], \"CAP2\":[%d,%d,%d], \"CAP3\":[%d,%d,%d], \"CAP4\":[%d,%d,%d]}\n\r",onOff[0], 3600, meritev[1]
-																												   ,onOff[1], 3650, meritev[2]
-	      																										   ,onOff[2], 3600, meritev[3]
-	      																										   ,onOff[3], 3650, meritev[0]);
+	      sprintf(temp1, "{\"CAP1\":[%d,%d,%d], \"CAP2\":[%d,%d,%d], \"CAP3\":[%d,%d,%d], \"CAP4\":[%d,%d,%d]}\n\r", 
+		      onOff[0], 3600, meritev[1],
+		      onOff[1], 3650, meritev[2],
+		      onOff[2], 3600, meritev[3],
+		      onOff[3], 3650, meritev[0]);
 
 	      CDC_Transmit_FS((uint8_t*)&temp1, strlen(temp1));
 	      //CDC_Transmit_FS((uint8_t*)&meritev, 8);
